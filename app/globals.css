@@ -19,3 +19,33 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  .card_wraooer {
+    @apply relative bg-gradient-to-b from-slate-400 to-slate-700 overflow-hidden;
+  }
+
+  @keyframes border-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+  .card-wrapper::before {
+    background: conic-gradient(
+      rgba(164, 240, 185, 0.967) 0deg,
+      rgba(22, 248, 139, 0.963) 0deg,
+      transparent 80deg
+    );
+
+    @apply h-[150%] absolute w-[150%] left-[-25%] top-[-25%] content-[''];
+    animation: border-spin 7s linear infinite;
+
+    .card-content {
+      @apply top-[1px] left-[1px] absolute w-[calc(100%-2px)] h-[calc(100%-2px)] bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl;
+    }
+  }
+}
